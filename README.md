@@ -23,22 +23,12 @@ This is an example pet name generator app used in the OpenAI API [quickstart tut
    $ npm install
    ```
 
-5. Make a copy of the example environment variables file
+5. Add your [API key](https://platform.openai.com/account/api-keys) to the `.env` file (NOT the `.env.example` file)
 
-   On Linux systems: 
-   ```bash
-   $ cp .env.example .env
-   ```
-   On Windows:
-   ```powershell
-   $ copy .env.example .env
-   ```
-6. Add your [API key](https://platform.openai.com/account/api-keys) to the newly created `.env` file
-
-7. Run the app
+6. Run the app
 
    ```bash
    $ npm run dev
    ```
 
-You should now be able to access the app at [http://localhost:3000](http://localhost:3000)! For the full context behind this example app, check out the [tutorial](https://platform.openai.com/docs/quickstart).
+You should now be able to access the app at [http://localhost:3005](http://localhost:3005)! For the full context behind this example app, check out the [tutorial](https://platform.openai.com/docs/quickstart).
