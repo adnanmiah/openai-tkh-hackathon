@@ -15,16 +15,10 @@ export default async function (req, res) {
     return;
   }
 
-  const address = req.body.address || '';
-  const houseSize = req.body.houseSize || '';
-  const yardSize = req.body.yardSize || '';
-  const neighborhoodType = req.body.neighborhoodType || '';
+  const situation = req.body.situation || '';
 
 
-  validateInput(address, "Address");
-  validateInput(houseSize, "House Size");
-  validateInput(yardSize, "Yard Size");
-  validateInput(neighborhoodType, "Neighborhood Type");
+  validateInput(situation, "Situation");
 
   function validateInput(input, inputName) {
     if (input.trim().length === 0) {
@@ -40,8 +34,8 @@ export default async function (req, res) {
   try {
     const completion = await openai.createCompletion({
       model: "text-davinci-003",
-      prompt: generatePrompt(address, houseSize, yardSize, neighborhoodType),
-      temperature: 0.6,
+      prompt: generatePrompt(situation),
+      temperature: 0.9,
       max_tokens: 250,
     });
     res.status(200).json({ result: completion.data.choices[0].text });
@@ -61,10 +55,10 @@ export default async function (req, res) {
   }
 }
 
-function generatePrompt(address, houseSize, yardSize, neighborhoodType) {
+function generatePrompt(situation) {
   return `You give advice on environmentally conscious things you can do to your home or place of living.
-You respond with a max of 50 tokens, so you should keep your bullets straight to the point.
+You respond with a max of 250 tokens, so you should keep your bullets straight to the point.
 Don't give an intro or ending, just respond with 10 bullet points of things to do to be more environmentally concious based on the following input:
 
-I live at ${address}. I have a ${houseSize} size house. I have a ${yardSize} size yard. My neighborhood is ${neighborhoodType}.`;
+${situation}`;
 }
